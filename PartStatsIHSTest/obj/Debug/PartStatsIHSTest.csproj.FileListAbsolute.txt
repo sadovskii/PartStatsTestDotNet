@@ -1,0 +1,15 @@
+C:\Users\user\source\repos\PartStatsIHSTest\PartStatsIHSTest\obj\Debug\PartStatsIHSTest.csprojAssemblyReference.cache
+C:\Users\user\source\repos\PartStatsIHSTest\PartStatsIHSTest\obj\Debug\PartStatsIHSTest.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\PartStatsIHSTest\PartStatsIHSTest\bin\Debug\PartStatsIHSTest.exe.config
+C:\Users\user\source\repos\PartStatsIHSTest\PartStatsIHSTest\bin\Debug\PartStatsIHSTest.exe
+C:\Users\user\source\repos\PartStatsIHSTest\PartStatsIHSTest\bin\Debug\PartStatsIHSTest.pdb
+C:\Users\user\source\repos\PartStatsIHSTest\PartStatsIHSTest\bin\Debug\PartStatsIHSTest.BLL.dll
+C:\Users\user\source\repos\PartStatsIHSTest\PartStatsIHSTest\bin\Debug\PartStatsIHSTest.BLL.pdb
+C:\Users\user\source\repos\PartStatsIHSTest\PartStatsIHSTest\obj\Debug\PartStatsIHSTest.csproj.CopyComplete
+C:\Users\user\source\repos\PartStatsIHSTest\PartStatsIHSTest\obj\Debug\PartStatsIHSTest.exe
+C:\Users\user\source\repos\PartStatsIHSTest\PartStatsIHSTest\obj\Debug\PartStatsIHSTest.pdb
+C:\Users\user\source\repos\PartStatsIHSTest\PartStatsIHSTest\bin\Debug\itextsharp.dll
+C:\Users\user\source\repos\PartStatsIHSTest\PartStatsIHSTest\bin\Debug\itextsharp.xml
+C:\Users\user\source\repos\PartStatsIHSTest\PartStatsIHSTest\bin\Debug\Autofac.dll
+C:\Users\user\source\repos\PartStatsIHSTest\PartStatsIHSTest\bin\Debug\Autofac.pdb
+C:\Users\user\source\repos\PartStatsIHSTest\PartStatsIHSTest\bin\Debug\Autofac.xml
