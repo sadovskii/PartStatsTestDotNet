@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace PartStatsIHSTest
@@ -15,7 +16,7 @@ namespace PartStatsIHSTest
         static void Main(string[] args)
         {
             string param1 = "filesystem";
-            string param2 = @"C:\Users\user\Desktop\tasks\tests";
+            string param2 = @"E:\TestResult";
 
             //string a = "http";
             //string b = @"E:\TestResult\httpsavepath.html";

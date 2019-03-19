@@ -12,20 +12,19 @@ namespace PartStatsIHSTest.BLL
     {
         public FileSystemManager(IFileValidate validFile) : base(validFile) { }
 
-        public async void Work(string path)
+        public void Work(string path)
         {
             string[] allfiles = Directory.GetFiles(path, "*.*", SearchOption.AllDirectories);
 
             Dictionary<string, int> vs = new Dictionary<string, int>();
 
-            await Task.Run(() => PassageThroughAllFiles(allfiles, vs));
+            PassageThroughAllFiles(allfiles, vs);
 
             this.SaveInfoToFile(vs);
         }
 
         public void PassageThroughAllFiles(string[] allfiles, Dictionary<string, int> vs)
         {
-            var obj = new object();
             foreach (var a in allfiles)
             {
                 var file = new FileInfo(a);
@@ -34,11 +33,12 @@ namespace PartStatsIHSTest.BLL
                 {
                     string[] details = this.GetContentFromFile(file.Extension, file.FullName, Encoding.UTF8);
 
-                    lock (obj)
+                    lock (vs)
                     {
                         this.SelectCorrectRecords(vs, details);
                     }
                 }
+
             }
         }
     }

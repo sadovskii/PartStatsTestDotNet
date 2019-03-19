@@ -27,28 +27,36 @@ namespace PartStatsIHSTest.BLL
                 for (var i = 1; i <= strUrls.Length; i++)
                 {
                     string filePathDownloaded = null;
+                    int newIndex = i;
 
-                    if (Uri.TryCreate(strUrls[i], UriKind.Absolute, out Uri objUrl))
+                    Task.Run(() =>
                     {
-                        filePathDownloaded = string.Format(downloadedFilesfolder, string.Format("{0}.txt", strUrls[i]));
-                        //objUrl.Segments[objUrl.Segments.Length - 1]
-                        using (var client = new WebClient())
+                        if (Uri.TryCreate(strUrls[newIndex], UriKind.Absolute, out Uri objUrl))
                         {
-                            client.DownloadFile(strUrls[i], filePathDownloaded);
+                            filePathDownloaded = string.Format(downloadedFilesfolder, string.Format("{0}.txt", strUrls[newIndex]));
+
+                            using (var client = new WebClient())
+                            {
+                                client.DownloadFile(strUrls[newIndex], filePathDownloaded);
+                            }
                         }
-                    }
 
-                    if (filePathDownloaded != null)
-                    {
-                        var file = new FileInfo(filePathDownloaded);
-
-                        if (file.Exists && validFile.CheckFileEncoding(file, Encoding.UTF8))
+                        if (filePathDownloaded != null)
                         {
-                            string[] details = this.GetContentFromFile(file.Extension, filePathDownloaded, Encoding.UTF8);
-                            File.Delete(filePathDownloaded);
-                            this.SelectCorrectRecords(vs, details);
+                            var file = new FileInfo(filePathDownloaded);
+
+                            if (file.Exists && validFile.CheckFileEncoding(file, Encoding.UTF8))
+                            {
+                                string[] details = this.GetContentFromFile(file.Extension, filePathDownloaded, Encoding.UTF8);
+                                File.Delete(filePathDownloaded);
+
+                                lock (vs)
+                                {
+                                    this.SelectCorrectRecords(vs, details);
+                                }
+                            }
                         }
-                    }
+                    });                   
                 }
 
                 this.SaveInfoToFile(vs);
