@@ -43,3 +43,5 @@ C:\Users\user\Desktop\tasks\IHS\PartStatsTestDotNet\PartStatsIHSTest\obj\Debug\P
 C:\Users\user\Desktop\tasks\IHS\PartStatsTestDotNet\PartStatsIHSTest\obj\Debug\PartStatsIHSTest.csproj.CopyComplete
 C:\Users\user\Desktop\tasks\IHS\PartStatsTestDotNet\PartStatsIHSTest\obj\Debug\PartStatsIHSTest.exe
 C:\Users\user\Desktop\tasks\IHS\PartStatsTestDotNet\PartStatsIHSTest\obj\Debug\PartStatsIHSTest.pdb
+C:\Users\user\Desktop\tasks\IHS\PartStatsTestDotNet\PartStatsIHSTest\obj\Debug\PartStatsIHSTest.Resource.resources
+C:\Users\user\Desktop\tasks\IHS\PartStatsTestDotNet\PartStatsIHSTest\obj\Debug\PartStatsIHSTest.csproj.GenerateResource.cache

@@ -1,11 +1,8 @@
-﻿using Autofac;
+﻿using System;
+using System.Collections.Generic;
+using Autofac;
 using PartStatsIHSTest.BLL.Interfacies;
 using PartStatsIHSTest.BLL.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PartStatsIHSTest.BLL.Factories
 {

@@ -117,8 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AnnotationBeforeInput" xml:space="preserve">
+    <value>&lt;input_mode&gt;:
+              filesystem - &lt;input_address&gt; is directory path
+              http - &lt;input_address&gt; is file path
+</value>
+  </data>
+  <data name="EnterParameters" xml:space="preserve">
+    <value>Enter parameters:</value>
+  </data>
   <data name="ErrorList" xml:space="preserve">
-    <value>List of errors</value>
+    <value>List of errors:</value>
+  </data>
+  <data name="InputAddress" xml:space="preserve">
+    <value>&lt;input_address&gt;:</value>
+  </data>
+  <data name="InputMode" xml:space="preserve">
+    <value>&lt;input_mode&gt;:</value>
   </data>
   <data name="WorkCompleted" xml:space="preserve">
     <value>Work completed</value>

@@ -1,6 +1,7 @@
-﻿using Autofac;
-using PartStatsIHSTest.BLL.Factories;
+﻿using PartStatsIHSTest.BLL.Factories;
 using PartStatsIHSTest.BLL.Interfacies;
+using Autofac;
+
 
 namespace PartStatsIHSTest.BLL.Utils
 {

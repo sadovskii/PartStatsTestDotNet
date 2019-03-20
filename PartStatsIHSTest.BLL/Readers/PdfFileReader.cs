@@ -1,11 +1,8 @@
-﻿using iTextSharp.text.pdf;
+﻿using System.Collections.Generic;
+using System.Text;
+using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
 using PartStatsIHSTest.BLL.Interfacies;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PartStatsIHSTest.BLL.Readers
 {

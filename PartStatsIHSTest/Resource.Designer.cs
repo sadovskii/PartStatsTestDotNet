@@ -61,11 +61,50 @@ namespace PartStatsIHSTest {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to List of errors.
+        ///   Looks up a localized string similar to &lt;input_mode&gt;:
+        ///              filesystem - &lt;input_address&gt; is directory path
+        ///              http - &lt;input_address&gt; is file path
+        ///.
+        /// </summary>
+        internal static string AnnotationBeforeInput {
+            get {
+                return ResourceManager.GetString("AnnotationBeforeInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter parameters:.
+        /// </summary>
+        internal static string EnterParameters {
+            get {
+                return ResourceManager.GetString("EnterParameters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List of errors:.
         /// </summary>
         internal static string ErrorList {
             get {
                 return ResourceManager.GetString("ErrorList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;input_address&gt;:.
+        /// </summary>
+        internal static string InputAddress {
+            get {
+                return ResourceManager.GetString("InputAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;input_mode&gt;:.
+        /// </summary>
+        internal static string InputMode {
+            get {
+                return ResourceManager.GetString("InputMode", resourceCulture);
             }
         }
         
