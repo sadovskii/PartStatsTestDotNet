@@ -1,4 +1,6 @@
-﻿using PartStatsIHSTest.BLL.Interfacies;
+﻿using PartStatsIHSTest.BLL.Exceptions;
+using PartStatsIHSTest.BLL.Interfacies;
+using PartStatsIHSTest.BLL.Resources;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,36 +12,70 @@ namespace PartStatsIHSTest.BLL
 {
     public class FileSystemManager : FileManagerBase, IFileManager
     {
-        public FileSystemManager(IFileValidate validFile) : base(validFile) { }
+        public FileSystemManager(IFileValidate validFile) : base(validFile)
+        {
+            Exceptions = new List<Exception>();
+        }
+
+        public List<Exception> Exceptions { get; set; }
 
         public void Work(string path)
         {
-            string[] allfiles = Directory.GetFiles(path, "*.*", SearchOption.AllDirectories);
+            try
+            {
+                if(!Directory.Exists(path))
+                    throw new NotFoundDirectoryException(string.Format(ExceptionResource.AccessDenied, path));
 
-            Dictionary<string, int> vs = new Dictionary<string, int>();
+                if (!this.CanRead(Directory.GetAccessControl(path)))
+                    throw new AccessDeniedException(string.Format(ExceptionResource.AccessDenied, path));
 
-            PassageThroughAllFiles(allfiles, vs);
+                string[] allfiles = Directory.GetFiles(path, "*.*", SearchOption.AllDirectories);
+                Dictionary<string, int> vs = new Dictionary<string, int>();
 
-            this.SaveInfoToFile(vs);
+                PassageThroughAllFiles(allfiles, vs);
+                this.SaveInfoToFile(vs);
+            }
+            catch(Exception ex)
+            {
+                Exceptions.Add(ex);
+            }
         }
 
-        public void PassageThroughAllFiles(string[] allfiles, Dictionary<string, int> vs)
+        private void PassageThroughAllFiles(string[] allfiles, Dictionary<string, int> vs)
         {
+            List<Task> tasks = new List<Task>();
+
             foreach (var a in allfiles)
             {
-                var file = new FileInfo(a);
-
-                if (file.Exists && this.validFile.CheckFileEncoding(file, Encoding.UTF8))
+                tasks.Add(Task.Run(() =>
                 {
-                    string[] details = this.GetContentFromFile(file.Extension, file.FullName, Encoding.UTF8);
+                    var file = new FileInfo(a);
 
-                    lock (vs)
+                    if (!this.CanRead(file.GetAccessControl()))
+                        throw new AccessDeniedException(string.Format(ExceptionResource.AccessDenied, file.Name));
+
+                    if (file.Exists && this.validFile.CheckFileEncoding(file, Encoding.UTF8) || true)
                     {
-                        this.SelectCorrectRecords(vs, details);
-                    }
-                }
+                        string[] details = this.GetContentFromFile(file.Extension, file.FullName, Encoding.UTF8);
 
+                        lock (vs)
+                        {
+                            this.SelectCorrectRecords(vs, details, file.Name, Exceptions);
+                        }
+                    }
+                }));
             }
+
+            try
+            {
+                Task.WaitAll(tasks.ToArray());
+            }
+            catch(Exception)
+            {
+                Exceptions.AddRange(this.GetExceptionsFromTasks(tasks));
+            }
+            
+
         }
     }
 }

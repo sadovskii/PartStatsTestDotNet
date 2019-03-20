@@ -77,6 +77,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\AccessDeniedException.cs" />
+    <Compile Include="Exceptions\FormatFileNotReadException.cs" />
+    <Compile Include="Exceptions\NotCorrectFormatLineException.cs" />
+    <Compile Include="Exceptions\NotFoundFileException.cs" />
+    <Compile Include="Exceptions\NotFoundDirectoryException.cs" />
+    <Compile Include="Exceptions\NotLoadFileException.cs" />
     <Compile Include="Factories\FileReaderFactory.cs" />
     <Compile Include="Factories\ManagerFactory.cs" />
     <Compile Include="FileManagerBase.cs" />
@@ -90,6 +96,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Readers\PdfFileReader.cs" />
     <Compile Include="Readers\TxtFileReader.cs" />
+    <Compile Include="Resources\ExceptionResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ExceptionResource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Utils\AppSettings.cs" />
     <Compile Include="Utils\AutofacRegistration.cs" />
     <Compile Include="Utils\Constans.cs" />
@@ -97,6 +108,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\ExceptionResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ExceptionResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

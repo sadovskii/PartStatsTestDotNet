@@ -1,5 +1,7 @@
-﻿using PartStatsIHSTest.BLL.Interfacies;
+﻿using PartStatsIHSTest.BLL.Exceptions;
+using PartStatsIHSTest.BLL.Interfacies;
 using PartStatsIHSTest.BLL.Readers;
+using PartStatsIHSTest.BLL.Resources;
 using PartStatsIHSTest.BLL.Utils;
 using System;
 using System.Collections.Generic;
@@ -25,7 +27,7 @@ namespace PartStatsIHSTest.BLL.Factories
             if (readers.ContainsKey(context))
                 return readers[context];
 
-            throw new Exception("Reader not found");
+            throw new FormatFileNotReadException(string.Format(ExceptionResource.FormatFileNotRead, context));
         }
     }
 }
