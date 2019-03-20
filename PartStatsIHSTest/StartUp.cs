@@ -10,23 +10,23 @@ namespace PartStatsIHSTest
     {
         public static void Run(string[] args)
         {
-            var param1 = string.Empty;
-            var param2 = string.Empty;
+            var param1 = "http";
+            var param2 = @"C:\Users\user\Desktop\tasks\tests\urls.txt";
 
-            if (args.Length >= 2)
-            {
-                param1 = args[0];
-                param2 = args[1];
-            }
-            else
-            {
-                Console.WriteLine(Resource.AnnotationBeforeInput);
-                Console.WriteLine(Resource.EnterParameters);
-                Console.Write(Resource.InputMode);
-                param1 = Console.ReadLine();
-                Console.Write(Resource.InputAddress);
-                param2 = Console.ReadLine();
-            }
+            //if (args.Length >= 2)
+            //{
+            //    param1 = args[0];
+            //    param2 = args[1];
+            //}
+            //else
+            //{
+            //    Console.WriteLine(Resource.AnnotationBeforeInput);
+            //    Console.WriteLine(Resource.EnterParameters);
+            //    Console.Write(Resource.InputMode);
+            //    param1 = Console.ReadLine();
+            //    Console.Write(Resource.InputAddress);
+            //    param2 = Console.ReadLine();
+            //}
 
             IContainer container = AutofacRegistration.Build();
             var app = container.Resolve<IManagerFactory>();

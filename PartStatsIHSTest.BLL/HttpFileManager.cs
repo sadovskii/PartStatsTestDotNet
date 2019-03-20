@@ -53,16 +53,17 @@ namespace PartStatsIHSTest.BLL
         {
             List<Task> tasks = new List<Task>();
 
-            for (var i = 1; i <= strUrls.Length; i++)
+            for (var i = 0; i < strUrls.Length; i++)
             {
                 string filePathDownloaded = null;
                 int newIndex = i;
+                bool isNotError = true;
 
                 tasks.Add(Task.Run(() =>
                 {
                     if (Uri.TryCreate(strUrls[newIndex], UriKind.Absolute, out Uri objUrl))
                     {
-                        filePathDownloaded = string.Format(downloadedFilesfolder, string.Format("{0}.txt", strUrls[newIndex]));
+                        filePathDownloaded = string.Format(downloadedFilesfolder, string.Format("{0}.txt", newIndex));
 
                         try
                         {
@@ -71,14 +72,15 @@ namespace PartStatsIHSTest.BLL
                                 client.DownloadFile(strUrls[newIndex], filePathDownloaded);
                             }
                         }
-                        catch(Exception)
+                        catch (Exception)
                         {
                             Exceptions.Add(new NotLoadFileException(string.Format(ExceptionResource.NotLoadFile, strUrls[newIndex])));
+                            isNotError = false;
                         }
-                        
+
                     }
 
-                    if (filePathDownloaded != null)
+                    if (filePathDownloaded != null && isNotError)
                     {
                         var file = new FileInfo(filePathDownloaded);
 
@@ -97,6 +99,7 @@ namespace PartStatsIHSTest.BLL
                         }
                     }
                 }));
+               
             }
 
             try
