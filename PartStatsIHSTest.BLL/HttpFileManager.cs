@@ -59,46 +59,43 @@ namespace PartStatsIHSTest.BLL
                 int newIndex = i;
                 bool isNotError = true;
 
-                tasks.Add(Task.Run(() =>
+                if (Uri.TryCreate(strUrls[newIndex], UriKind.Absolute, out Uri objUrl))
                 {
-                    if (Uri.TryCreate(strUrls[newIndex], UriKind.Absolute, out Uri objUrl))
+                    filePathDownloaded = string.Format(downloadedFilesfolder, string.Format("{0}.txt", newIndex));
+
+                    try
                     {
-                        filePathDownloaded = string.Format(downloadedFilesfolder, string.Format("{0}.txt", newIndex));
-
-                        try
+                        using (var client = new WebClient())
                         {
-                            using (var client = new WebClient())
-                            {
-                                client.DownloadFile(strUrls[newIndex], filePathDownloaded);
-                            }
-                        }
-                        catch (Exception)
-                        {
-                            Exceptions.Add(new NotLoadFileException(string.Format(ExceptionResource.NotLoadFile, strUrls[newIndex])));
-                            isNotError = false;
-                        }
-
-                    }
-
-                    if (filePathDownloaded != null && isNotError)
-                    {
-                        var file = new FileInfo(filePathDownloaded);
-
-                        if (file.Exists && validFile.CheckFileEncoding(file, Encoding.UTF8))
-                        {
-                            if (!this.CanRead(file.GetAccessControl()))
-                                throw new AccessDeniedException(string.Format(ExceptionResource.AccessDenied, file.Name));
-
-                            string[] details = this.GetContentFromFile(file.Extension, filePathDownloaded, Encoding.UTF8);
-                            File.Delete(filePathDownloaded);
-
-                            lock (vs)
-                            {
-                                this.SelectCorrectRecords(vs, details, file.Name, Exceptions);
-                            }
+                            client.DownloadFile(strUrls[newIndex], filePathDownloaded);
                         }
                     }
-                }));
+                    catch (Exception)
+                    {
+                        Exceptions.Add(new NotLoadFileException(string.Format(ExceptionResource.NotLoadFile, strUrls[newIndex])));
+                        isNotError = false;
+                    }
+
+                }
+
+                if (filePathDownloaded != null && isNotError)
+                {
+                    var file = new FileInfo(filePathDownloaded);
+
+                    if (file.Exists && validFile.CheckFileEncoding(file, Encoding.UTF8))
+                    {
+                        if (!this.CanRead(file.GetAccessControl()))
+                            throw new AccessDeniedException(string.Format(ExceptionResource.AccessDenied, file.Name));
+
+                        string[] details = this.GetContentFromFile(file.Extension, filePathDownloaded, Encoding.UTF8);
+                        File.Delete(filePathDownloaded);
+
+                        lock (vs)
+                        {
+                            this.SelectCorrectRecords(vs, details, file.Name, Exceptions);
+                        }
+                    }
+                };
                
             }
 
